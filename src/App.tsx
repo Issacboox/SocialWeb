@@ -1,8 +1,20 @@
+import { Container } from "semantic-ui-react"
+import NavBar from "./app/layout/nav/NavBar"
+import EventDashboard from "./features/events/dashboard/EventDashboard"
+import { Fragment } from "react"
+
+
 function App() {
 
 
   return (
-   <h1>Hi there</h1>
+    <Fragment>
+      <NavBar/>
+      <Container className="main">
+        <EventDashboard/>
+      </Container>
+    </Fragment>
+   
   )
 }
 
