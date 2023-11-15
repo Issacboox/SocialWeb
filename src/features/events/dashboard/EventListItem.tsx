@@ -1,38 +1,52 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Fragment } from "react";
-import { Button, Icon, Item, ItemGroup, List, Segment, SegmentGroup } from "semantic-ui-react";
+import {
+  Button,
+  Icon,
+  Item,
+  ItemGroup,
+  List,
+  Segment,
+  SegmentGroup,
+} from "semantic-ui-react";
 import EventListAttendee from "./EventListAttendee";
+import { AppEvent } from "../../../app/types/event";
 
-export default function EventListItem() {
+type Props = {
+  event : AppEvent
+}
+
+export default function EventListItem({ event }: Props) {
   return (
     <Fragment>
       <SegmentGroup>
         <Segment>
           <ItemGroup>
             <Item>
-              <Item.Image size="tiny" circular src="/user.png" />
+              <Item.Image size="tiny" circular src={event.hostPhotoURL} />
               <Item.Content>
-                <Item.Header>Event Title</Item.Header>
-                <Item.Description>Hosted by bob</Item.Description>
+                <Item.Header>{event.title}</Item.Header>
+                <Item.Description>Hosted by {event.hostedBy}</Item.Description>
               </Item.Content>
             </Item>
           </ItemGroup>
         </Segment>
         <Segment>
           <span>
-            <Icon name="clock"/> Date
-            <Icon name="marker"/> Venue
+            <Icon name="clock" /> {event.date}
+            <Icon name="marker" /> {event.venue}
           </span>
         </Segment>
         <Segment secondary>
           <List horizontal>
-            <EventListAttendee/>
-            <EventListAttendee/>
-            <EventListAttendee/>
+            {event.attendees.map((attendee) => (
+              <EventListAttendee key={attendee.id} attendees={attendee} />
+            ))}
           </List>
         </Segment>
         <Segment clearing>
-          <span>Description of the Event</span>
-          <Button color="teal" floated="right" content='View'/>
+          <span>{event.description}</span>
+          <Button color="teal" floated="right" content="View" />
         </Segment>
       </SegmentGroup>
     </Fragment>
