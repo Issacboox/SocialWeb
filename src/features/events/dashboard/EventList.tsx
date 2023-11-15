@@ -4,13 +4,15 @@ import EventListItem from "./EventListItem";
 import { AppEvent } from "../../../app/types/event";
 type Props = {
   events : AppEvent[]
+  selectedEvent:(event: AppEvent) => void
+  deleteEvents:(eventId: string) => void
 }
 
-export default function EventList({events}: Props) {
+export default function EventList({events, selectedEvent,deleteEvents}: Props) {
   return (
     <Fragment>
       {events.map((event: any) => {
-        return <EventListItem event={event} key={event.id} />;
+        return <EventListItem event={event} key={event.id} selectedEvent={selectedEvent} deleteEvents={deleteEvents} />;
       })}
     </Fragment>
   );

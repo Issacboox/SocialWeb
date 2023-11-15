@@ -1,5 +1,5 @@
 import { Button, Container, Menu, MenuItem } from "semantic-ui-react";
-import logo from '../../../logo.png'
+
 
 type Props = {
   setFormOpen: (value:boolean) => void;
@@ -10,7 +10,7 @@ export default function NavBar({setFormOpen}: Props) {
     <Menu inverted={true} fixed="top">
       <Container>
         <MenuItem header>
-          <img src={logo} alt="logo" />
+          <img src='/logo.png' alt="logo" />
           Revents
         </MenuItem>
         <MenuItem name="Events" />
